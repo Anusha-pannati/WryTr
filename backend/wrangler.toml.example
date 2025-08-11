@@ -1,0 +1,3 @@
+[vars]
+DATABASE_URL="your prisma accelarate url"
+JWT_SECRET=""

@@ -4,6 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 import { Hono } from 'hono'
 import { verify } from 'hono/jwt'
 import generateRoute from './generateBlogRoutes'
+import { format } from 'date-fns'
 
 export const blogRoutes = new Hono<{
 	Bindings : {
@@ -113,6 +114,7 @@ blogRoutes.get('/bulk',async (c) => {
 			content: true,
 			title: true,
 			id: true,
+			createdAt: true,
 			author: {
 				select: {
 					name: true
@@ -121,8 +123,13 @@ blogRoutes.get('/bulk',async (c) => {
 		}
 	});
 
+	const formattedBlogs = blogs.map(blog => ({
+		...blog,
+		createdAt: format(blog.createdAt, 'dd MMM yyyy')
+	}));
+
 	return c.json({
-		posts: blogs
+		posts: formattedBlogs
 	})
 })
 
@@ -141,6 +148,7 @@ blogRoutes.get('/:id',async (c) => {
 				id: true,
 				title: true,
 				content: true,
+				createdAt: true,
 				author: {
 					select: {
 						name: true
@@ -148,8 +156,19 @@ blogRoutes.get('/:id',async (c) => {
 				}
 			}
 		})
+
+		if (!post) {
+			c.status(404);
+			return c.json({ message: "Post not found" });
+		}
+
+		const formattedPost = {
+			...post,
+			createdAt: format(post.createdAt, 'dd MMM yyyy')
+		};
+
 		return c.json({
-			post
+			post: formattedPost
 		})
 	}catch(e){
 		c.status(411);

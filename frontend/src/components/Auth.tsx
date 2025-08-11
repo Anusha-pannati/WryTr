@@ -2,7 +2,9 @@ import { SignupInput } from "@anusha-pannati/medium-common";
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
-import { BACKEND_URL } from "../config";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 
 export const Auth = ({ type }: {type: "signup" | "signin"}) => {
@@ -15,7 +17,7 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) => {
 
     async function sendRequest() {
         try{
-            console.log("inside sendreq")
+            console.log("inside sending")
             console.log(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`)
             console.log(postInputs)
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);

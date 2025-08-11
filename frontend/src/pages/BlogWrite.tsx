@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Edit3, Bot, Eye, Send, Save, ArrowLeft, Loader2 } from 'lucide-react';
-import { BACKEND_URL } from '../config';
+// import { BACKEND_URL } from '../config';
 import axios from 'axios';
 import { Appbar } from '../components/Appbar';
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 
 const BlogWriter = () => {
   const [mode, setMode] = useState('write'); // 'write', 'generate', 'preview'

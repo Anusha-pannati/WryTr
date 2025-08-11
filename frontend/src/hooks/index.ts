@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
-import { BACKEND_URL } from "../config";
+// import { BACKEND_URL } from "../config";
 import axios from "axios";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export interface Blog {
     "content" : string;
     "title": string;
     "id": string;
+    "createdAt": string;
     "author": {
         "name": string
     }
@@ -54,5 +57,31 @@ export const useBlogs = () => {
     return {
         loading,
         blogs
+    }
+}
+
+export const useUser = () => {
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<any>();
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/user/userInfo`, {
+            headers: {
+                Authorization: localStorage.getItem("Authorization")
+            }
+        })
+            .then(response => {
+                setUser(response.data.user);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching user info:", error);
+                setLoading(false);
+            });
+    }, []);
+
+    return {
+        loading,
+        user
     }
 }
