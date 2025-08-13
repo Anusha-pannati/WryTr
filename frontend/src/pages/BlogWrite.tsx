@@ -3,6 +3,7 @@ import { Edit3, Bot, Eye, Send, Save, ArrowLeft, Loader2 } from 'lucide-react';
 // import { BACKEND_URL } from '../config';
 import axios from 'axios';
 import { Appbar } from '../components/Appbar';
+import { useNavigate } from 'react-router-dom';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -15,6 +16,7 @@ const BlogWriter = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const navigate = useNavigate();
 
   // Mock API endpoints - replace with your actual endpoints
   const API_BASE = BACKEND_URL;
@@ -93,9 +95,7 @@ const BlogWriter = () => {
 
       if (response) {
         setMessage({ type: 'success', text: 'Blog posted successfully!' });
-        // Optionally clear the form or redirect
-        // setTitle('');
-        // setContent('');
+        navigate(`/blogs`);
       } else {
         throw new Error('Failed to post blog');
       }

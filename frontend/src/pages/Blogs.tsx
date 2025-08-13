@@ -72,20 +72,23 @@ export const Blogs = () => {
             </button>
           </div>
         ) : (
-          /* Blog Feed */
-          <div className="space-y-6">
-            {blogs.map((blog) => (
-              <div key={blog.id} className="bg-white rounded-lg border border-green-100  hover:border-green-200 transition-all duration-200 hover:shadow-md">
-                <BlogCard
-                  id={blog.id}
-                  authorName={blog.author.name || "Anonymous"}
-                  title={blog.title}
-                  content={blog.content}
-                  publishedDate={blog.createdAt}
-                />
-              </div>
-            ))}
-          </div>
+                      /* Blog Feed */
+            <div className="space-y-6">
+              {Object.values(blogs)
+                .reverse()
+                .map((blog) => (
+                  <div key={blog.id} className="bg-white rounded-lg border border-green-100 hover:border-green-200 transition-all duration-200 hover:shadow-md">
+                    <BlogCard
+                      id={blog.id}
+                      authorName={blog.author.name || "Anonymous"}
+                      title={blog.title}
+                      content={blog.content}
+                      publishedDate={blog.createdAt}
+                    />
+                  </div>
+                ))}
+            </div>
+
         )}
 
         {/* End Indicator */}
