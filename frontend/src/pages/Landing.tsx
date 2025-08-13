@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Footer } from '../components/Footer';
-
+import landingImage from '../assets/TypeWriter.png';
 
 
 export const Landing = () => {
@@ -89,7 +89,7 @@ export const Landing = () => {
               {/* Placeholder for your image - replace src with your actual image */}
               <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center shadow-2xl">
                 <img 
-                  src="\src\assets\TypeWriter.png" 
+                  src={landingImage} 
                   alt="Hero Image" 
                   className="w-full h-full object-cover rounded-2xl shadow-lg"
                 />
