@@ -24,27 +24,27 @@ export const BlogCard = ({
 
   return (
     <Link to={`/blog/${id}`}>
-      <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-md cursor-pointer hover:bg-gray-50 transition-colors">
+      <div className="p-4 border-b border-green-100 pb-4 w-screen max-w-screen-md cursor-pointer transition-colors bg-white">
         <div className="flex items-center">
           <Avatar name={authorName.toUpperCase()} />
-          <div className="font-extralight pl-2 text-sm flex justify-center flex-col">
+          <div className="font-extralight pl-2 text-sm flex justify-center flex-col text-gray-700">
             {authorName}
           </div>
           <div className="flex justify-center flex-col pl-2">
             <Circle />
           </div>
-          <div className="pl-2 font-thin text-slate-500 text-sm flex justify-center flex-col">
+          <div className="pl-2 font-thin text-gray-500 text-sm flex justify-center flex-col">
             {publishedDate}
           </div>
         </div>
 
-        <div className="text-xl font-semibold pt-2">
+        <div className="text-xl font-semibold pt-2 text-gray-900">
           {title}
         </div>
-        <div className="text-md font-thin">
+        <div className="text-md font-thin text-gray-700">
           {truncatedContent}
         </div>
-        <div className="text-slate-500 text-sm font-thin pt-4">
+        <div className="text-gray-500 text-sm font-thin pt-4">
           {`${readTime} minute(s) read`}
         </div>
       </div>
@@ -54,7 +54,7 @@ export const BlogCard = ({
 
 export function Circle() {
   return (
-    <div className="h-1 w-1 rounded-full bg-slate-500" />
+    <div className="h-1 w-1 rounded-full bg-gray-400" />
   );
 }
 

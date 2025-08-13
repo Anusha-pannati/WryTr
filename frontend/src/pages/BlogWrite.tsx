@@ -6,8 +6,6 @@ import { Appbar } from '../components/Appbar';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-
-
 const BlogWriter = () => {
   const [mode, setMode] = useState('write'); // 'write', 'generate', 'preview'
   const [title, setTitle] = useState('');
@@ -127,12 +125,12 @@ const BlogWriter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <Appbar></Appbar>
-      <div className="max-w-6xl mx-auto px-4">
+    <div className="min-h-screen bg-white">
+      <Appbar />
+      <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-          <div className="p-6 border-b border-gray-200">
+        <div className="bg-white rounded-xl shadow-sm border border-green-100 mb-6">
+          <div className="p-6 border-b border-green-100">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Blog Writer</h1>
             
             {/* Mode Selector */}
@@ -141,7 +139,7 @@ const BlogWriter = () => {
                 onClick={() => setMode('write')}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   mode === 'write'
-                    ? 'bg-blue-100 text-blue-700 border border-blue-300'
+                    ? 'bg-green-100 text-green-700 border border-green-300'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -152,7 +150,7 @@ const BlogWriter = () => {
                 onClick={() => setMode('generate')}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   mode === 'generate'
-                    ? 'bg-purple-100 text-purple-700 border border-purple-300'
+                    ? 'bg-green-100 text-green-700 border border-green-300'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -191,7 +189,7 @@ const BlogWriter = () => {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {mode === 'write' && (
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-green-100 p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Write Your Blog</h2>
                 
                 <div className="space-y-4">
@@ -205,7 +203,7 @@ const BlogWriter = () => {
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       placeholder="Enter your blog title..."
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                     />
                   </div>
                   
@@ -219,7 +217,7 @@ const BlogWriter = () => {
                       onChange={(e) => setContent(e.target.value)}
                       placeholder="Start writing your blog content..."
                       rows={20}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-none"
                     />
                   </div>
                 </div>
@@ -227,7 +225,7 @@ const BlogWriter = () => {
             )}
 
             {mode === 'generate' && (
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-green-100 p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">AI Blog Generation</h2>
                 
                 <div className="space-y-4">
@@ -241,7 +239,7 @@ const BlogWriter = () => {
                       value={aiPrompt}
                       onChange={(e) => setAiPrompt(e.target.value)}
                       placeholder="Enter the topic or title for AI to generate..."
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                     />
                   </div>
                   
@@ -255,14 +253,14 @@ const BlogWriter = () => {
                       onChange={(e) => setAiContext(e.target.value)}
                       placeholder="Provide additional context, tone, target audience, or specific points to cover..."
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                     />
                   </div>
                   
                   <button
                     onClick={generateBlog}
                     disabled={isGenerating || !aiPrompt.trim()}
-                    className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-medium"
+                    className="w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-medium"
                   >
                     {isGenerating ? (
                       <>
@@ -281,11 +279,11 @@ const BlogWriter = () => {
             )}
 
             {mode === 'preview' && (
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-green-100 p-6">
                 <div className="flex items-center space-x-3 mb-6">
                   <button
                     onClick={() => setMode('write')}
-                    className="flex items-center space-x-2 text-gray-600 hover:text-gray-900"
+                    className="flex items-center space-x-2 text-gray-600 hover:text-green-700"
                   >
                     <ArrowLeft size={20} />
                     <span>Back to Edit</span>
@@ -313,14 +311,14 @@ const BlogWriter = () => {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-6">
+            <div className="bg-white rounded-xl shadow-sm border border-green-100 p-6 sticky top-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Blog Actions</h3>
               
               <div className="space-y-3">
                 <button
                   onClick={postBlog}
                   disabled={isPosting || !title.trim() || !content.trim()}
-                  className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-medium"
+                  className="w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-medium"
                 >
                   {isPosting ? (
                     <>
