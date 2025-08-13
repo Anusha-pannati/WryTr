@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Footer } from '../components/Footer';
 
-interface LandingProps {
-  onNavigateToBlogs?: () => void;
-}
 
-export const Landing = ({ onNavigateToBlogs }: LandingProps) => {
+
+export const Landing = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
