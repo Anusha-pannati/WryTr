@@ -1,3 +1,8 @@
+name = "name of the folder"
+compatibility_date = "current or past date"
+main = "src/index.ts"
+
+
 [vars]
 DATABASE_URL="your prisma accelarate url"
 JWT_SECRET=""

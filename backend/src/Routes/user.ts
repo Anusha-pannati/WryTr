@@ -18,7 +18,6 @@ userRoutes.post('/signup', async (c) => {
     }).$extends(withAccelerate())
     const body = await c.req.json()
     const {success} = signupInput.safeParse(body);
-    console.log(success,"hello")
     if(!success){
         c.status(411);
         return c.json({
@@ -26,7 +25,6 @@ userRoutes.post('/signup', async (c) => {
         })
     } 
     try{
-        console.log("inside signup")
         const user = await prisma.user.create({
             data:
             {

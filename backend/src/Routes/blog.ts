@@ -18,16 +18,13 @@ export const blogRoutes = new Hono<{
 
 blogRoutes.use("/*",async (c, next) => {
 	try{
-		console.log("in use");
 	const jwt= c.req.header("Authorization");
-	console.log(jwt);
 	if (!jwt) {
 		c.status(401);
 		return c.json({error: "unauthorized"});
 	}
 	const token = jwt.split(' ')[0];
 	const verified =await verify(token, c.env.JWT_SECRET);
-	console.log(verified);
 	if(!verified)
 	{
 		c.status(401);
@@ -35,9 +32,7 @@ blogRoutes.use("/*",async (c, next) => {
 			error: "user not found"
 		});
 	}
-	console.log("after verified error")
 	c.set('userId',verified.id);
-	console.log("chai")
 	await next();
 	}catch(e){
 		c.status(403);
@@ -48,7 +43,6 @@ blogRoutes.use("/*",async (c, next) => {
 })
 
 blogRoutes.post('/',async (c) => {
-	console.log("inside post");
 	const body = await c.req.json();
 	const {success} = createBlogInput.safeParse(body);
     if(!success){
@@ -61,7 +55,6 @@ blogRoutes.post('/',async (c) => {
 		datasourceUrl: c.env.DATABASE_URL,
 	}).$extends(withAccelerate())
 
-	console.log(c);
 
 	const blog = await prisma.post.create({
 		data: {

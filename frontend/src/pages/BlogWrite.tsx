@@ -31,10 +31,6 @@ const BlogWriter = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      console.log({
-          title: aiPrompt,
-          content: aiContext
-        })
       const response = await axios.post(
         `${API_BASE}/api/v1/blog/generate`,
         {
@@ -48,8 +44,6 @@ const BlogWriter = () => {
           }
         }
       );
-
-      console.log(response)
 
       if (response) {
         const data = await response.data;

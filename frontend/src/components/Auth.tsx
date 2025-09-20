@@ -15,13 +15,8 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) => {
 
     async function sendRequest() {
         try{
-            console.log("inside sending")
-            console.log(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`)
-            console.log(postInputs)
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);
-            console.log("done with backend call")
             const jwt = response.data.jwt;
-            console.log(jwt);
             localStorage.setItem("Authorization",jwt);
             const storedToken = localStorage.getItem("Authorization")
 
@@ -55,13 +50,13 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) => {
                     </div>
                 </div>
                 <div className="pt-8">
-                    {type === "signup" ? <LabelledInput label="Name" placeholder="Anusha Pannati..." onChange={(e) => {
+                    {type === "signup" ? <LabelledInput label="Name" placeholder="Alex" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
                             name: e.target.value
                         })
                     }}></LabelledInput> : null}
-                     <LabelledInput label="Username" placeholder="Anusha@gmail.com" onChange={(e) => {
+                     <LabelledInput label="Username" placeholder="alex@gmail.com" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
                             username: e.target.value
